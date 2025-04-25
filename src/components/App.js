@@ -44,7 +44,7 @@ function App() {
 
   // Load movie data from JSON file
   useEffect(() => {
-    fetch("http://localhost:3001/movies")
+    fetch("https://raw.githubusercontent.com/jlo128456/json-server-data/refs/heads/main/film.json")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch movies");
         return res.json();
