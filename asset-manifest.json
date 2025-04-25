@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-moive-app/static/css/main.a9ca915e.css",
+    "main.js": "/react-moive-app/static/js/main.e039435a.js",
+    "index.html": "/react-moive-app/index.html",
+    "main.a9ca915e.css.map": "/react-moive-app/static/css/main.a9ca915e.css.map",
+    "main.e039435a.js.map": "/react-moive-app/static/js/main.e039435a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a9ca915e.css",
+    "static/js/main.e039435a.js"
+  ]
+}
