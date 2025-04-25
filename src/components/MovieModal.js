@@ -7,7 +7,7 @@ function MovieModal({ onClose, onAddMovie, onUpdateMovie, editingMovie }) {
   const submitHandler = editingMovie ? onUpdateMovie : onAddMovie;
 
   return (
-    <div className="modal-backdrop">
+    <div className="modal-overlay">
       <div className="modal">
         <button className="close" onClick={onClose}>×</button>
         <h2>{editingMovie ? 'Edit Movie' : 'Add New Movie'}</h2>
