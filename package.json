@@ -38,5 +38,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://jlo128456.github.io/movie-spa"
+  "homepage": "https://jlo128456.github.io/movie-spa",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
