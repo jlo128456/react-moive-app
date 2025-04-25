@@ -1,17 +1,22 @@
+// components/MovieModal.js
 import React from 'react';
 import MovieForm from './MovieForm';
 
-function MovieModal({ onClose, onAddMovie }) {
+function MovieModal({ onClose, onAddMovie, onUpdateMovie, editingMovie }) {
+  // pick the right handler
+  const submitHandler = editingMovie ? onUpdateMovie : onAddMovie;
+
   return (
-    <div className="modal-overlay">
+    <div className="modal-backdrop">
       <div className="modal">
-        <div className="form-container">
-          <button className="btn btn-red" onClick={onClose} style={{ float: "right" }}>
-            ×
-          </button>
-          <h2>Add New Movie</h2>
-          <MovieForm onAddMovie={onAddMovie} />
-        </div>
+        <button className="close" onClick={onClose}>×</button>
+        <h2>{editingMovie ? 'Edit Movie' : 'Add New Movie'}</h2>
+        
+        {/* Pass the function itself as onSubmit */}
+        <MovieForm
+          onSubmit={submitHandler}
+          initialData={editingMovie}
+        />
       </div>
     </div>
   );
