@@ -1,123 +1,155 @@
-# 🎥 My Movie Database SPA
+# 🎬 React Movie App
 
-A modern single-page application (SPA) for managing a movie collection, built using React and React Router. Users can browse, search, add, edit, and delete movies with a responsive UI and smooth routing experience.
+A modern, single-page movie management app built with **React**, styled with custom CSS, and powered by a mock REST API using **JSON Server**.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Users can browse, search, filter, sort, add, edit, and delete movies — all on a responsive, interactive interface.
 
 ---
 
 ## 🚀 Features
 
-- 🔍 **Search Movies** by title  
-- ➕ **Add New Movies** using a form  
-- 📝 **Edit or Delete** existing entries  
-- 📂 **Load More** functionality to display additional movies  
-- 📄 **Organised by Components** (e.g., `MovieCard`, `MovieForm`, `SearchBar`)  
-- 🛱️ **Client-side Routing** with React Router  
+- ✅ Built with Create React App (CRA)
+- ✅ SPA navigation with React Router
+- 🔍 Live search by movie title
+- 🎯 Filter by director and rating
+- 🔤 Sort movies alphabetically (A–Z)
+- ➕ Add new movies (form or modal)
+- ✏️ Edit existing movies
+- ❌ Delete movies with confirmation
+- 🔁 Show more / show less pagination
+- 🧪 Mock REST API using `json-server`
 
 ---
 
-## 🧰 Tech Stack
-
-- React (Create React App)  
-- React Router DOM  
-- HTML5 + CSS3  
-- JavaScript (ES6+)  
-
----
-
-## 📁 Project Structure
+## 🗂 Folder Structure
 
 ```
 src/
+├── App.js                # Main app logic and routes
 ├── components/
-│   ├── App.js
-│   ├── MovieCard.js
-│   ├── MovieForm.js
-│   └── SearchBar.js
-├── film.json              # Local movie data
-├── index.js               # Entry point
-└── index.css              # Global styles
+│   ├── Header.js         # Search, filter, sort, and modal trigger
+│   ├── MovieGrid.js      # Grid layout for movie cards
+│   ├── MovieModal.js     # Add/Edit modal
+│   ├── MovieForm.js      # Full-form component at /movies/new
+│   ├── Navbar.js         # Navigation bar
+│   └── About.js          # About page
+├── index.js              # React root entry
+└── index.css             # Global styles
 ```
 
 ---
 
-## 💠 Getting Started
+## 📦 Getting Started
 
-### 1️⃣ Clone the Repo
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/jlo128456/movie-spa.git
-cd movie-spa
+git clone https://github.com/your-username/react-movie-app.git
+cd react-movie-app
 ```
 
-### 2️⃣ Install Dependencies
+### 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3️⃣ Start the Development Server
+### 3. Prepare the JSON Server
+
+Create a file called `film.json` in your project root:
+
+```json
+{
+  "movies": [
+    {
+      "id": 1,
+      "Title": "Avatar",
+      "Year": "2009",
+      "Rated": "PG-13",
+      "Released": "18 Dec 2009",
+      "Runtime": "162 min",
+      "Genre": "Action, Adventure, Fantasy",
+      "Director": "James Cameron",
+      "Writer": "James Cameron",
+      "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+      "Plot": "A paraplegic marine dispatched to the moon Pandora...",
+      "Language": "English, Spanish",
+      "Country": "USA, UK",
+      "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
+      "Poster": "https://your-image-url.jpg"
+    }
+  ]
+}
+```
+
+Then start the JSON server:
+
+```bash
+npx json-server --watch film.json --port 3001
+```
+
+This will run at: [http://localhost:3001/movies](http://localhost:3001/movies)
+
+### 4. Start the React App
+
+Open another terminal window:
 
 ```bash
 npm start
 ```
 
-Visit [http://localhost:3000](http://localhost:3000) in your browser.
+This will start the app at: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## ⚙️ Available Scripts
+## 🔗 Routes
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in development mode.  
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.
-
-### `npm run eject`
-
-⚠️ Permanently reveals the build configuration — only use if necessary.
+| Path            | Description                   |
+|------------------|-------------------------------|
+| `/`              | Home page with all movies     |
+| `/movies/new`    | Page to add a new movie       |
+| `/about`         | About page                    |
 
 ---
 
-## 🌍 Deployment
+## ⚙️ JSON Server Tips
 
-You can deploy this app using:
-
-- GitHub Pages  
-- Netlify  
-- Vercel  
-
-Make sure to update the `homepage` field in your `package.json` if using GitHub Pages.
+- To reset the data, stop the server, update `db.json`, and restart it.
+- You can edit `db.json` directly while testing.
 
 ---
 
-## 👨‍💻 Author
+## 🛠 Technologies Used
+
+- React (Create React App)
+- React Router DOM
+- JavaScript (ES6+)
+- HTML & CSS
+- JSON Server
+
+---
+
+## 📘 License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+## 🙋‍♂️ Author
 
 **Jeffrey Lo**  
-Email: [j.lo128456@gmail.com](mailto:j.lo128456@gmail.com)  
-GitHub: [jlo128456](https://github.com/jlo128456)
+📧 [j.lo128456@gmail.com](mailto:j.lo128456@gmail.com)  
+🔗 [Portfolio](https://jlo128456.github.io/Personal_Blog/)
 
 ---
 
-## 📄 License
+## 🌟 Future Improvements
 
-This project is licensed under the **MIT License**.
+- Add star ratings and reviews
+- Persist data with real backend (e.g. Firebase or Express)
+- Add animations and transitions
+- Improve mobile responsiveness
 
 ---
 
-## 📖 Learn More
-
-- [React Documentation](https://reactjs.org/)
-- [React Router](https://reactrouter.com/)
-- [Create React App Docs](https://create-react-app.dev/)
+> Feel free to fork and contribute!
