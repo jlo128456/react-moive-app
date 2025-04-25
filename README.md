@@ -1,9 +1,11 @@
 # 🎬 React Movie App
 
-A modern, single-page movie management app built with **React**, styled with custom CSS, and powered by a mock REST API using **JSON Server**.
+A modern, single-page movie management app built with **React**, styled with custom CSS, and powered by a mock REST API using **JSON Server On Render**.
 
 Users can browse, search, filter, sort, add, edit, and delete movies — all on a responsive, interactive interface.
 
+## JSON server On Render
+https://json-server-data-neiz.onrender.com/movie
 ---
 
 ## 🚀 Features
