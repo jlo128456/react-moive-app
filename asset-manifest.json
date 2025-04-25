@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/movie-spa/static/css/main.a9ca915e.css",
+    "main.js": "/movie-spa/static/js/main.e039435a.js",
+    "index.html": "/movie-spa/index.html",
+    "main.a9ca915e.css.map": "/movie-spa/static/css/main.a9ca915e.css.map",
+    "main.e039435a.js.map": "/movie-spa/static/js/main.e039435a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a9ca915e.css",
+    "static/js/main.e039435a.js"
+  ]
+}
