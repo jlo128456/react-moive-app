@@ -44,6 +44,13 @@ function App() {
 
   // Load movie data from JSON file
   useEffect(() => {
+    const cachedMovies = localStorage.getItem("movies");
+    if (cachedMovies) {
+      // Immediately display cached movies
+      setMovies(JSON.parse(cachedMovies));
+    }
+  
+    // Fetch fresh data from API
     fetch("https://json-server-data-neiz.onrender.com/movies")
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch movies");
@@ -60,7 +67,10 @@ function App() {
           director: movie.Director,
           rating: movie.Rated,
         }));
+        
+        // Update UI and cache with fresh data
         setMovies(normalized);
+        localStorage.setItem("movies", JSON.stringify(normalized));
       })
       .catch((err) => console.error("Error loading movies from API:", err));
   }, []);
