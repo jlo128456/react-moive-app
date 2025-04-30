@@ -165,6 +165,7 @@ function App() {
                   setExpandedId={setExpandedId}
                   onEdit={handleEditMovie}
                   onDelete={handleDeleteMovie}
+                  loading={movies.length === 0}
                 />
 
                 {/* Show more / less functionality */}

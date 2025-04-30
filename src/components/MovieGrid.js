@@ -1,15 +1,34 @@
 // components/MovieGrid.js
 import React from "react";
 
-function MovieGrid({ movies, expandedId, setExpandedId, onEdit, onDelete }) {
+function MovieGrid({ movies, expandedId, setExpandedId, onEdit, onDelete, loading }) {
   const toggleCard = (id) => {
     setExpandedId((prevId) => (prevId === id ? null : id));
   };
 
+  const placeholderCount = 6;
+  const displayMovies = loading
+    ? Array.from({ length: placeholderCount })
+    : movies;
+
   return (
     <div className="movie-grid">
-      {movies.map((movie) => {
+      {displayMovies.map((movie, index) => {
+        if (loading) {
+          return (
+            <div className="movie-card placeholder" key={index}>
+              <img
+                src="https://via.placeholder.com/300x450?text=Loading..."
+                alt="Loading..."
+                className="movie-thumb"
+              />
+              <h3 className="placeholder-title">Loading...</h3>
+            </div>
+          );
+        }
+
         const isExpanded = expandedId === movie.id;
+
         return (
           <div className={`movie-card ${isExpanded ? "expanded" : ""}`} key={movie.id}>
             {!isExpanded && (
@@ -54,3 +73,4 @@ function MovieGrid({ movies, expandedId, setExpandedId, onEdit, onDelete }) {
 }
 
 export default MovieGrid;
+
