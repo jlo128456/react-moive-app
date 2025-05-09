@@ -1,6 +1,4 @@
-/* Global Stylesheet for the app */
-
-/* Reset default styles */
+/* ───── Reset & Global ───── */
 * {
   margin: 0;
   padding: 0;
@@ -12,10 +10,10 @@ body {
   background: url("https://wallpapercave.com/wp/wp5347712.jpg") no-repeat center center fixed;
   background-size: cover;
   padding: 40px 20px;
-  color: #333;
+  color: dimgray;
 }
 
-/* ========== HEADER ========== */
+/* ───── Header ───── */
 header {
   text-align: center;
   margin-bottom: 30px;
@@ -34,32 +32,31 @@ h1 {
   margin-top: 10px;
 }
 
-#search-input {
-  width: 300px;
+#search-input,
+form input {
+  width: 100%;
   padding: 8px;
   font-size: 1rem;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid lightgray;
 }
 
-/* ========== MAIN ========== */
+/* ───── Main ───── */
 main {
   max-width: 1000px;
   margin: 40px auto;
-  padding: 0;
   background: transparent;
-  box-shadow: none;
-  border: none;
 }
 
-main h2 {
-  margin-bottom: 20px;
-  color: #ffffff;
-  font-size: 1.8rem;
+main h2,
+.form-container h2 {
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: white;
 }
 
-/* ========== BUTTONS ========== */
+/* ───── Buttons ───── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -80,41 +77,23 @@ main h2 {
   opacity: 0.95;
 }
 
-.btn-green {
-  background-color: #27ae60;
-  color: white;
-}
+.btn-green { background: mediumseagreen; color: white; }
+.btn-green:hover { background: seagreen; }
 
-.btn-green:hover {
-  background-color: #1e8449;
-}
+.btn-red { background: tomato; color: white; }
+.btn-red:hover { background: firebrick; }
 
-.btn-red {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.btn-red:hover {
-  background-color: #c0392b;
-}
-
-.btn-blue {
-  background-color: #3498db;
-  color: white;
-}
-
-.btn-blue:hover {
-  background-color: #2980b9;
-}
+.btn-blue { background: dodgerblue; color: white; }
+.btn-blue:hover { background: steelblue; }
 
 .show-more-container {
   text-align: center;
   margin: 40px 0 20px;
 }
 
-/* ========== FORM ========== */
+/* ───── Form ───── */
 .form-container {
-  background: #fff;
+  background: white;
   max-width: 600px;
   margin: 20px auto;
   padding: 20px 30px;
@@ -122,15 +101,7 @@ main h2 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.form-container h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  color: #34495e;
-}
-
-form div {
-  margin-bottom: 15px;
-}
+form div { margin-bottom: 15px; }
 
 form label {
   display: block;
@@ -138,20 +109,12 @@ form label {
   font-weight: bold;
 }
 
-form input {
-  width: 100%;
-  padding: 8px;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-/* ========== MOVIE CARDS ========== */
+/* ───── Movie Cards ───── */
 .movie-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
   margin-top: 20px;
 }
 
@@ -164,22 +127,17 @@ form input {
   min-height: 280px;
   padding: 15px;
   text-align: center;
-  transition: all 0.3s ease;
   cursor: pointer;
-  position: relative;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
 }
 
-.movie-card.expanded {
-  min-height: 360px;
-}
+.movie-card:hover { transform: translateY(-5px); }
 
-.movie-card:hover {
-  transform: translateY(-5px);
-}
+.movie-card.expanded { min-height: 360px; }
 
 .movie-card img {
   width: 100%;
@@ -191,18 +149,16 @@ form input {
 .movie-card h3 {
   font-size: 1.2rem;
   margin: 10px 0 5px;
-  color: #2c3e50;
+  color: darkslategray;
   cursor: pointer;
   text-decoration: underline;
 }
 
-.movie-card h3:hover {
-  color: #2980b9;
-}
+.movie-card h3:hover { color: steelblue; }
 
 .movie-card p {
   margin: 4px 0;
-  color: #555;
+  color: dimgray;
 }
 
 .movie-details {
@@ -213,18 +169,7 @@ form input {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-/* ========== PLACEHOLDER STYLES ========== */
-
+/* ───── Placeholder ───── */
 .movie-card.placeholder {
   background: rgba(255, 255, 255, 0.65);
   animation: pulse 1.5s infinite ease-in-out;
@@ -237,29 +182,16 @@ form input {
 }
 
 .placeholder-title {
-  color: #999;
+  color: gray;
   font-style: italic;
   margin-top: 0.5rem;
 }
 
-/* Optional shimmer animation for loading effect */
-@keyframes pulse {
-  0% {
-    background-color: rgba(255, 255, 255, 0.65);
-  }
-  50% {
-    background-color: rgba(245, 245, 245, 0.5);
-  }
-  100% {
-    background-color: rgba(255, 255, 255, 0.65);
-  }
-}
-
-/* ========== MODAL ========== */
+/* ───── Modal ───── */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,29 +208,17 @@ form input {
   animation: slideUp 0.3s ease;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ========== NAVBAR ========== */
+/* ───── Navbar ───── */
 .navbar {
-  background-color: transparent;
+  background: transparent;
   padding: 12px 20px;
   display: flex;
   justify-content: center;
   gap: 24px;
-  
 }
 
 .nav-link {
-  color: #ecf0f1;
+  color: whitesmoke;
   font-weight: 600;
   text-decoration: none;
   font-size: 1rem;
@@ -308,12 +228,11 @@ form input {
 }
 
 .nav-link:hover {
-  background-color: #34495e;
-  color: #27ae60;
-  text-decoration: none;
+  background-color: darkslategray;
+  color: mediumseagreen;
 }
 
-/* ========== ABOUT PAGE ========== */
+/* ───── About ───── */
 .about {
   max-width: 800px;
   margin: 40px auto;
@@ -323,14 +242,14 @@ form input {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   line-height: 1.6;
   font-size: 1rem;
-  color: #2c3e50;
+  color: darkslategray;
 }
 
 .about h2 {
   font-size: 1.8rem;
   margin-bottom: 16px;
-  color: #1e8449;
-  border-bottom: 2px solid #27ae60;
+  color: seagreen;
+  border-bottom: 2px solid mediumseagreen;
   padding-bottom: 8px;
 }
 
@@ -340,6 +259,20 @@ form input {
   margin-top: 12px;
 }
 
-.about li {
-  margin-bottom: 8px;
+.about li { margin-bottom: 8px; }
+
+/* ───── Animations ───── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse {
+  0%, 100% { background-color: rgba(255, 255, 255, 0.65); }
+  50% { background-color: rgba(245, 245, 245, 0.5); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
