@@ -31,7 +31,7 @@ const MovieCard = ({ movie, isExpanded, toggleCard, onEdit, onDelete }) => (
 
 function MovieGrid({ movies, expandedId, setExpandedId, onEdit, onDelete, loading }) {
   const toggleCard = (id) => setExpandedId(prev => (prev === id ? null : id));
-  const displayMovies = loading ? Array.from({ length: 6 }) : movies;
+  const displayMovies = loading ? Array.from({ length: 4 }) : movies;
 
   return (
     <div className="movie-grid">

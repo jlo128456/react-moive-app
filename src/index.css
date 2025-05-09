@@ -13,6 +13,14 @@ body {
   color: dimgray;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
 /* ───── Header ───── */
 header {
   text-align: center;
@@ -25,8 +33,16 @@ h1 {
   margin-bottom: 15px;
 }
 
+/* ───── Search Alignment ───── */
+.search-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .search-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   margin-top: 10px;
@@ -34,7 +50,8 @@ h1 {
 
 #search-input,
 form input {
-  width: 100%;
+  flex: 1 1 300px;
+  max-width: 400px;
   padding: 8px;
   font-size: 1rem;
   border-radius: 4px;
@@ -43,7 +60,7 @@ form input {
 
 /* ───── Main ───── */
 main {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 40px auto;
   background: transparent;
 }
@@ -109,63 +126,72 @@ form label {
   font-weight: bold;
 }
 
-/* ───── Movie Cards ───── */
+/* ───── Movie Grid Layout ───── */
 .movie-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  padding: 20px;
   margin-top: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* ───── Movie Card ───── */
 .movie-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(3px);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  width: 200px;
-  min-height: 280px;
   padding: 15px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
+  align-items: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  min-height: 320px;
+  text-align: center;
 }
 
-.movie-card:hover { transform: translateY(-5px); }
+.movie-card:hover {
+  transform: translateY(-5px);
+}
 
-.movie-card.expanded { min-height: 360px; }
+.movie-card.expanded {
+  background: white;
+  min-height: 380px;
+}
 
 .movie-card img {
   width: 100%;
   height: auto;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
 }
 
 .movie-card h3 {
-  font-size: 1.2rem;
-  margin: 10px 0 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: darkslategray;
-  cursor: pointer;
+  margin: 10px 0 6px;
+  text-transform: capitalize;
   text-decoration: underline;
 }
 
 .movie-card h3:hover { color: steelblue; }
 
 .movie-card p {
-  margin: 4px 0;
+  font-size: 0.9rem;
   color: dimgray;
+  margin: 4px 0;
 }
 
 .movie-details {
   margin-top: 10px;
   text-align: left;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: #444;
+  width: 100%;
   animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -232,7 +258,7 @@ form label {
   color: mediumseagreen;
 }
 
-/* ───── About ───── */
+/* ───── About Page ───── */
 .about {
   max-width: 800px;
   margin: 40px auto;
@@ -259,7 +285,9 @@ form label {
   margin-top: 12px;
 }
 
-.about li { margin-bottom: 8px; }
+.about li {
+  margin-bottom: 8px;
+}
 
 /* ───── Animations ───── */
 @keyframes fadeIn {

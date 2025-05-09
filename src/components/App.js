@@ -11,7 +11,7 @@ import "../index.css";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(4); //direct count store to replace inital count
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAZ, setSortAZ] = useState(false);
   const [selectedDirector, setSelectedDirector] = useState("");
@@ -56,7 +56,7 @@ function App() {
             <>
               <Header {...{ searchTerm, setSearchTerm, sortAZ, setSortAZ, selectedDirector, setSelectedDirector, selectedRating, setSelectedRating, directors, ratings }} openModal={() => { setIsModalOpen(true); setEditingMovie(null); }} />
               <MovieGrid movies={filtered.slice(0, visibleCount)} {...{ expandedId, setExpandedId }} onEdit={setEditingMovie} onDelete={handleDelete} />
-              {filtered.length > 6 && (
+              {filtered.length > 4 && (
                 <div className="show-more-container">
                   <button className="btn btn-green" onClick={() => setVisibleCount(visibleCount < filtered.length ? visibleCount + 6 : 6)}>
                     {visibleCount < filtered.length ? "Show More" : "Show Less"}
