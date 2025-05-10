@@ -1,25 +1,33 @@
 # 🎬 React Movie App
 
-A modern, single-page movie management app built with **React**, styled with custom CSS, and powered by a mock REST API using **JSON Server On Render**.
+A modern, single-page movie management app built with **React**, styled using modular **CSS**, and powered by a mock REST API hosted both **locally** and on **Render (JSON Server)**.
 
-Users can browse, search, filter, sort, add, edit, and delete movies — all on a responsive, interactive interface.
+Users can browse, search, filter, sort, add, edit, and delete movies — all from a clean, responsive interface.
 
-## JSON server On Render
-https://json-server-data-neiz.onrender.com/movie
+---
+
+## 🔗 Live API (Render)
+
+📡 https://json-server-data-neiz.onrender.com/movies
+
+## 🖥️ Local API
+
+You can also run the app entirely **offline with a local JSON server** on port `3001`.
+
 ---
 
 ## 🚀 Features
 
 - ✅ Built with Create React App (CRA)
-- ✅ SPA navigation with React Router
-- 🔍 Live search by movie title
-- 🎯 Filter by director and rating
-- 🔤 Sort movies alphabetically (A–Z)
-- ➕ Add new movies (form or modal)
-- ✏️ Edit existing movies
-- ❌ Delete movies with confirmation
-- 🔁 Show more / show less pagination
-- 🧪 Mock REST API using `json-server`
+- ✅ SPA navigation using React Router
+- 🔍 Real-time search by title
+- 🎬 Filter by director and rating
+- 🔤 Alphabetical sort (A–Z)
+- ➕ Add via modal or full form
+- ✏️ Edit movie details
+- ❌ Confirm delete
+- ⏬ Show More / Show Less
+- 🧪 Local and remote mock REST APIs
 
 ---
 
@@ -27,23 +35,25 @@ https://json-server-data-neiz.onrender.com/movie
 
 ```
 src/
-├── App.js                # Main app logic and routes
 ├── components/
-│   ├── Header.js         # Search, filter, sort, and modal trigger
-│   ├── MovieGrid.js      # Grid layout for movie cards
-│   ├── MovieModal.js     # Add/Edit modal
-│   ├── MovieForm.js      # Full-form component at /movies/new
-│   ├── Navbar.js         # Navigation bar
-│   └── About.js          # About page
-├── index.js              # React root entry
-└── index.css             # Global styles
+│   ├── Header.js / .css
+│   ├── MovieGrid.js / .css
+│   ├── MovieModal.js / .css
+│   ├── MovieForm.js / .css
+│   ├── Navbar.js / .css
+│   └── About.js
+├── App.js / App.css
+├── index.js
+├── utils.js
+├── database/
+│   └── film.json
 ```
 
 ---
 
-## 📦 Getting Started
+## ⚙️ Setup Instructions
 
-### 1. Clone the Repository
+### 1. Clone the Project
 
 ```bash
 git clone https://github.com/your-username/react-movie-app.git
@@ -56,28 +66,21 @@ cd react-movie-app
 npm install
 ```
 
-### 3. Prepare the JSON Server
+### 3A. Run JSON Server Locally
 
-Create a file called `film.json` in your project root:
+Create a `film.json` file in `/database/`:
 
 ```json
 {
   "movies": [
     {
       "id": 1,
-      "Title": "Avatar",
-      "Year": "2009",
-      "Rated": "PG-13",
-      "Released": "18 Dec 2009",
-      "Runtime": "162 min",
-      "Genre": "Action, Adventure, Fantasy",
-      "Director": "James Cameron",
-      "Writer": "James Cameron",
-      "Actors": "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
-      "Plot": "A paraplegic marine dispatched to the moon Pandora...",
-      "Language": "English, Spanish",
-      "Country": "USA, UK",
-      "Awards": "Won 3 Oscars. Another 80 wins & 121 nominations.",
+      "Title": "The Matrix",
+      "Year": "1999",
+      "Genre": "Action, Sci-Fi",
+      "Rated": "R",
+      "Director": "Lana Wachowski, Lilly Wachowski",
+      "Plot": "A computer hacker learns the true nature of reality.",
       "Poster": "https://your-image-url.jpg"
     }
   ]
@@ -87,53 +90,74 @@ Create a file called `film.json` in your project root:
 Then start the JSON server:
 
 ```bash
-npx json-server --watch film.json --port 3001
+npx json-server --watch database/film.json --port 3001
 ```
 
-This will run at: [http://localhost:3001/movies](http://localhost:3001/movies)
+Runs at: http://localhost:3001/movies
+
+---
+
+### 3B. Or Use Remote API (Render)
+
+```plaintext
+https://json-server-data-neiz.onrender.com/movies
+```
+
+---
 
 ### 4. Start the React App
-
-Open another terminal window:
 
 ```bash
 npm start
 ```
 
-This will start the app at: [http://localhost:3000](http://localhost:3000)
+Opens at: http://localhost:3000
 
 ---
 
-## 🔗 Routes
+## 🔧 VS Code Setup
 
-| Path            | Description                   |
-|------------------|-------------------------------|
-| `/`              | Home page with all movies     |
-| `/movies/new`    | Page to add a new movie       |
-| `/about`         | About page                    |
+To get the best developer experience:
+
+1. Open the folder in **Visual Studio Code**
+2. Install these recommended extensions:
+   - ✅ ESLint (`dbaeumer.vscode-eslint`)
+   - ✅ Prettier - Code formatter (`esbenp.prettier-vscode`)
+   - ✅ Code Spell Checker (`streetsidesoftware.code-spell-checker`)
+3. (Optional) Add `.vscode/settings.json`:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/build": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
 
 ---
 
-## ⚙️ JSON Server Tips
+## 🔀 App Routes
 
-- To reset the data, stop the server, update `db.json`, and restart it.
-- You can edit `db.json` directly while testing.
+| Route           | Description         |
+|----------------|---------------------|
+| `/`            | Home movie list     |
+| `/movies/new`  | Add new movie       |
+| `/about`       | About this project  |
 
 ---
 
-## 🛠 Technologies Used
+## 🛠 Built With
 
-- React (Create React App)
-- React Router DOM
-- JavaScript (ES6+)
-- HTML & CSS
+- React + React Router
+- CSS Modules
 - JSON Server
-
----
-
-## 📘 License
-
-This project is open-source and available under the [MIT License](LICENSE).
+- Render (for API hosting)
 
 ---
 
@@ -141,14 +165,16 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 **Jeffrey Lo**  
 📧 [j.lo128456@gmail.com](mailto:j.lo128456@gmail.com)  
-🔗 [Portfolio](https://jlo128456.github.io/Personal_Blog/)
+🌐 [Portfolio](https://jlo128456.github.io/Personal_Blog/)
 
 ---
 
-## 🌟 Future Improvements
+## 🌱 Future Plans
 
-- Add star ratings and reviews
-- Persist data with real backend (e.g. Firebase or Express)
+- ⭐ Add ratings and reviews
+- 📱 Improve mobile responsiveness
+- 🧠 Connect to Firebase or Express backend
+- ✨ Add animations and transitionsd (e.g. Firebase or Express)
 - Add animations and transitions
 - Improve mobile responsiveness
 
