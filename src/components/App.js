@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
-import Header from "./Header";
-import MovieGrid from "./MovieGrid";
-import MovieModal from "./MovieModal";
 import MovieForm from "./MovieForm";
 import About from "./About";
-import { fetchMovies, filterMovies, getNextVisibleCount, DEFAULT_VISIBLE_COUNT } from "./utils";
+import HomeRoute from "./HomeRoute";
+import {fetchMovies, filterMovies,DEFAULT_VISIBLE_COUNT } from "./utils";
 import "../index.css";
 
 function App() {
@@ -34,8 +32,7 @@ function App() {
 
   const handleUpdate = (updated) => {
     setMovies(movies.map(m => (m.id === updated.id ? updated : m)));
-    setIsModalOpen(false);
-    setEditingMovie(null);
+    closeModal();
   };
 
   const handleDelete = (id) =>
@@ -46,6 +43,16 @@ function App() {
     setEditingMovie(null);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setEditingMovie(null);
+  };
+
+  const editMovie = (movie) => {
+    setEditingMovie(movie);
+    setIsModalOpen(true);
+  };
+
   return (
     <>
       <Navbar />
@@ -53,33 +60,19 @@ function App() {
         <Route
           path="/"
           element={
-            <>
-              <Header {...{ searchTerm, setSearchTerm, sortAZ, setSortAZ, selectedDirector, setSelectedDirector, selectedRating, setSelectedRating, directors, ratings }} openModal={showModal} />
-              <MovieGrid
-                movies={filtered.slice(0, visibleCount)}
-                isSingle={filtered.length === 1}
-                {...{ expandedId, setExpandedId }}
-                onEdit={setEditingMovie}
-                onDelete={handleDelete}
-              />
-              {filtered.length > DEFAULT_VISIBLE_COUNT && (
-                <div className="show-more-container">
-                  <button className="btn btn-green" onClick={() =>
-                    setVisibleCount(getNextVisibleCount(visibleCount, filtered.length))
-                  }>
-                    {visibleCount < filtered.length ? "Show More" : "Show Less"}
-                  </button>
-                </div>
-              )}
-              {isModalOpen && (
-                <MovieModal
-                  onClose={showModal}
-                  onAddMovie={handleAdd}
-                  onUpdateMovie={handleUpdate}
-                  editingMovie={editingMovie}
-                />
-              )}
-            </>
+            <HomeRoute
+              {...{
+                filtered, visibleCount, setVisibleCount,
+                searchTerm, setSearchTerm, sortAZ, setSortAZ,
+                selectedDirector, setSelectedDirector,
+                selectedRating, setSelectedRating,
+                directors, ratings, showModal,
+                isModalOpen, closeModal, handleAdd,
+                handleUpdate, setExpandedId,
+                expandedId, editMovie,
+                handleDelete, editingMovie
+              }}
+            />
           }
         />
         <Route path="/movies/new" element={<MovieForm onSubmit={handleAdd} />} />
