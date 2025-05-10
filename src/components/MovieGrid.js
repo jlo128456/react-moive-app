@@ -1,4 +1,5 @@
 import React from "react";
+import "./MovieGrid.css";
 
 const PlaceholderCard = (_, i) => (
   <div className="movie-card placeholder" key={i}>

@@ -1,6 +1,7 @@
 // components/MovieModal.js
 import React from 'react';
 import MovieForm from './MovieForm';
+import "./MovieModal.css";
 
 function MovieModal({ onClose, onAddMovie, onUpdateMovie, editingMovie }) {
   // pick the right handler

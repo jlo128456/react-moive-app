@@ -6,7 +6,7 @@ import MovieForm from "./MovieForm";
 import About from "./About";
 import HomeRoute from "./HomeRoute";
 import {fetchMovies, filterMovies,DEFAULT_VISIBLE_COUNT } from "./utils";
-import "../index.css";
+import './App.css';
 
 function App() {
   const [movies, setMovies] = useState([]);

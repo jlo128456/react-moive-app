@@ -1,5 +1,6 @@
 // components/MovieForm.js control addig and editing movie
 import React, { useEffect, useState } from 'react';
+import "./MovieForm.css" //individual css for each component
 
 function MovieForm({ onSubmit, initialData }) {
   const [formData, setFormData] = useState({

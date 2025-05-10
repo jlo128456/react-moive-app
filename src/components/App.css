@@ -1,0 +1,58 @@
+/* Reset & Global Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url("https://wallpapercave.com/wp/wp5347712.jpg") no-repeat center center fixed;
+    background-size: cover;
+    padding: 40px 20px;
+    color: dimgray;
+  }
+  
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+  }
+  
+  main {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: transparent;
+  }
+  
+  main h2,
+  .form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: white;
+  }
+  
+  .show-more-container {
+    text-align: center;
+    margin: 40px 0 20px;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { background-color: rgba(255, 255, 255, 0.65); }
+    50% { background-color: rgba(245, 245, 245, 0.5); }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
