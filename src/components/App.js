@@ -1,3 +1,4 @@
+//main App entry logic 
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
