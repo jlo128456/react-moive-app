@@ -6,12 +6,12 @@ import MovieGrid from "./MovieGrid";
 import MovieModal from "./MovieModal";
 import MovieForm from "./MovieForm";
 import About from "./About";
-import { fetchMovies, filterMovies } from "./utils";
+import { fetchMovies, filterMovies, getNextVisibleCount, DEFAULT_VISIBLE_COUNT } from "./utils";
 import "../index.css";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(4); //direct count store to replace inital count
+  const [visibleCount, setVisibleCount] = useState(DEFAULT_VISIBLE_COUNT);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAZ, setSortAZ] = useState(false);
   const [selectedDirector, setSelectedDirector] = useState("");
@@ -21,29 +21,29 @@ function App() {
   const [editingMovie, setEditingMovie] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchMovies(setMovies);
-  }, []);
-
+  useEffect(() => fetchMovies(setMovies), []);
   const filtered = filterMovies(movies, searchTerm, selectedDirector, selectedRating, sortAZ);
-  const directors = [...new Set(movies.map((m) => m.director))].sort();
-  const ratings = [...new Set(movies.map((m) => m.rating))].sort();
+  const directors = [...new Set(movies.map(m => m.director))].sort();
+  const ratings = [...new Set(movies.map(m => m.rating))].sort();
 
   const handleAdd = (newMovie) => {
-    const id = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
+    const id = movies.length ? movies[movies.length - 1].id + 1 : 1;
     setMovies([...movies, { ...newMovie, id }]);
     navigate("/");
   };
 
   const handleUpdate = (updated) => {
-    setMovies(movies.map((m) => (m.id === updated.id ? updated : m)));
+    setMovies(movies.map(m => (m.id === updated.id ? updated : m)));
     setIsModalOpen(false);
     setEditingMovie(null);
   };
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure?"))
-      setMovies(movies.filter((m) => m.id !== id));
+  const handleDelete = (id) =>
+    window.confirm("Are you sure?") && setMovies(movies.filter(m => m.id !== id));
+
+  const showModal = () => {
+    setIsModalOpen(true);
+    setEditingMovie(null);
   };
 
   return (
@@ -54,17 +54,30 @@ function App() {
           path="/"
           element={
             <>
-              <Header {...{ searchTerm, setSearchTerm, sortAZ, setSortAZ, selectedDirector, setSelectedDirector, selectedRating, setSelectedRating, directors, ratings }} openModal={() => { setIsModalOpen(true); setEditingMovie(null); }} />
-              <MovieGrid movies={filtered.slice(0, visibleCount)} {...{ expandedId, setExpandedId }} onEdit={setEditingMovie} onDelete={handleDelete} />
-              {filtered.length > 4 && (
+              <Header {...{ searchTerm, setSearchTerm, sortAZ, setSortAZ, selectedDirector, setSelectedDirector, selectedRating, setSelectedRating, directors, ratings }} openModal={showModal} />
+              <MovieGrid
+                movies={filtered.slice(0, visibleCount)}
+                isSingle={filtered.length === 1}
+                {...{ expandedId, setExpandedId }}
+                onEdit={setEditingMovie}
+                onDelete={handleDelete}
+              />
+              {filtered.length > DEFAULT_VISIBLE_COUNT && (
                 <div className="show-more-container">
-                  <button className="btn btn-green" onClick={() => setVisibleCount(visibleCount < filtered.length ? visibleCount + 6 : 6)}>
+                  <button className="btn btn-green" onClick={() =>
+                    setVisibleCount(getNextVisibleCount(visibleCount, filtered.length))
+                  }>
                     {visibleCount < filtered.length ? "Show More" : "Show Less"}
                   </button>
                 </div>
               )}
               {isModalOpen && (
-                <MovieModal onClose={() => { setIsModalOpen(false); setEditingMovie(null); }} onAddMovie={handleAdd} onUpdateMovie={handleUpdate} editingMovie={editingMovie} />
+                <MovieModal
+                  onClose={showModal}
+                  onAddMovie={handleAdd}
+                  onUpdateMovie={handleUpdate}
+                  editingMovie={editingMovie}
+                />
               )}
             </>
           }

@@ -1,3 +1,6 @@
+export const DEFAULT_VISIBLE_COUNT = 4;
+export const VISIBLE_STEP = 6;
+
 const BASE_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:3001"
@@ -39,4 +42,9 @@ export function fetchMovies(setMovies) {
     if (sortAZ) result.sort((a, b) => a.title.localeCompare(b.title));
     return result;
   }
+
+export function getNextVisibleCount(current, total) {
+  return current < total ? current + VISIBLE_STEP : DEFAULT_VISIBLE_COUNT;
+}
+
   

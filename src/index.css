@@ -212,6 +212,15 @@ form label {
   font-style: italic;
   margin-top: 0.5rem;
 }
+.movie-grid.single-card {
+  justify-content: center;
+}
+
+.movie-grid.single-card .movie-card {
+  max-width: 260px;
+  margin: 0 auto;
+  transform: scale(0.92);
+}
 
 /* ───── Modal ───── */
 .modal-overlay {

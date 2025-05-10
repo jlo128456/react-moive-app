@@ -2,7 +2,11 @@ import React from "react";
 
 const PlaceholderCard = (_, i) => (
   <div className="movie-card placeholder" key={i}>
-    <img src="https://via.placeholder.com/300x450?text=Loading..." alt="Loading..." className="movie-thumb" />
+    <img
+      src="https://via.placeholder.com/300x450?text=Loading..."
+      alt="Loading..."
+      className="movie-thumb"
+    />
     <h3 className="placeholder-title">Loading...</h3>
   </div>
 );
@@ -32,13 +36,15 @@ const MovieCard = ({ movie, isExpanded, toggleCard, onEdit, onDelete }) => (
 function MovieGrid({ movies, expandedId, setExpandedId, onEdit, onDelete, loading }) {
   const toggleCard = (id) => setExpandedId(prev => (prev === id ? null : id));
   const displayMovies = loading ? Array.from({ length: 4 }) : movies;
+  const isSingle = !loading && movies.length === 1;
 
   return (
-    <div className="movie-grid">
+    <div className={`movie-grid ${isSingle ? "single-card" : ""}`}>
       {displayMovies.map((movie, i) =>
         loading
           ? PlaceholderCard(null, i)
           : <MovieCard
+              key={movie.id}
               movie={movie}
               isExpanded={expandedId === movie.id}
               toggleCard={toggleCard}
