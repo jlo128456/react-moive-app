@@ -1,25 +1,15 @@
 import React from 'react';
-import "./Header.css";
+import './Header.css';
 
-function Header({
-  searchTerm,
-  setSearchTerm,
-  sortAZ,
-  setSortAZ,
-  selectedDirector,
-  setSelectedDirector,
-  selectedRating,
-  setSelectedRating,
-  directors,
-  ratings,
+export default function Header({
+  searchTerm, setSearchTerm,
+  sortAZ, setSortAZ,
+  selectedDirector, setSelectedDirector,
+  selectedRating, setSelectedRating,
+  directors, ratings,
   openModal,
 }) {
-  function handleSearchClick() {
-    // You could trigger filtering manually here,
-    // but it's not necessary unless you debounce
-    // For now, this is just UI feedback
-    console.log("Search clicked:", searchTerm);
-  }
+  const pad10 = { marginLeft: '10px' };
 
   return (
     <header>
@@ -31,9 +21,9 @@ function Header({
           type="text"
           placeholder="Search movies..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={e => setSearchTerm(e.target.value)}
         />
-        <button className="btn btn-blue" onClick={handleSearchClick}>
+        <button className="btn btn-blue" onClick={() => console.log('Search clicked:', searchTerm)}>
           🔍 Search
         </button>
         <button className="btn btn-green" onClick={openModal}>
@@ -42,43 +32,24 @@ function Header({
       </div>
 
       <div className="filters" style={{ marginTop: '20px' }}>
-        <button
-          className="btn btn-blue"
-          onClick={() => setSortAZ(!sortAZ)}
-        >
+        <button className="btn btn-blue" onClick={() => setSortAZ(!sortAZ)}>
           Sort A–Z {sortAZ ? '▲' : '▼'}
         </button>
 
-        <select
-          className="btn"
-          value={selectedDirector}
-          onChange={(e) => setSelectedDirector(e.target.value)}
-          style={{ marginLeft: '10px' }}
-        >
+        <select className="btn" value={selectedDirector} onChange={e => setSelectedDirector(e.target.value)} style={pad10}>
           <option value="">All Directors</option>
-          {directors.map((dir) => (
-            <option key={dir} value={dir}>
-              {dir}
-            </option>
+          {directors.map(dir => (
+            <option key={dir} value={dir}>{dir}</option>
           ))}
         </select>
 
-        <select
-          className="btn"
-          value={selectedRating}
-          onChange={(e) => setSelectedRating(e.target.value)}
-          style={{ marginLeft: '10px' }}
-        >
+        <select className="btn" value={selectedRating} onChange={e => setSelectedRating(e.target.value)} style={pad10}>
           <option value="">All Ratings</option>
-          {ratings.map((rate) => (
-            <option key={rate} value={rate}>
-              {rate}
-            </option>
+          {ratings.map(rate => (
+            <option key={rate} value={rate}>{rate}</option>
           ))}
         </select>
       </div>
     </header>
   );
 }
-
-export default Header;

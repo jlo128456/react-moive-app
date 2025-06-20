@@ -38,7 +38,7 @@ function MovieGrid({ movies, expandedId, setExpandedId, onEdit, onDelete, loadin
   const toggleCard = (id) => setExpandedId(prev => (prev === id ? null : id));
   const displayMovies = loading ? Array.from({ length: 4 }) : movies;
   const isSingle = !loading && movies.length === 1;
-
+//removed extra return as it was not doing anything
   return (
     <div className={`movie-grid ${isSingle ? "single-card" : ""}`}>
       {displayMovies.map((movie, i) =>
