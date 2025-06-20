@@ -1,0 +1,30 @@
+.about {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    font-size: 1rem;
+    color: darkslategray;
+  }
+  
+  .about h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: seagreen;
+    border-bottom: 2px solid mediumseagreen;
+    padding-bottom: 8px;
+  }
+  
+  .about ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 12px;
+  }
+  
+  .about li {
+    margin-bottom: 8px;
+  }
+  
